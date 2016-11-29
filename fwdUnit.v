@@ -1,3 +1,3 @@
-module	fwdUnit();
+module fwdUnit();
 
 endmodule
