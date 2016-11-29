@@ -3,7 +3,7 @@
 
 `timescale 1ns / 1ns
 
-module registerFile
+module regFile
 	(input clk,
 	input rst,
 	input wr,
