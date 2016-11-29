@@ -1,1 +1,3 @@
+module	instMem();
 
+endmodule
