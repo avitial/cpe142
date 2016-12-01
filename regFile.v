@@ -2,7 +2,7 @@
 // This is a Verilog description for a 16 x 16-bit register file
 `timescale 1ns / 1ns
 
-module regFile (clk, rst, wr, wrAddr, wrData, rdAddrR1, rdDataR1, rdAddrR2, rdDataR2, rdAddrR15, rdDataR15);
+module regFile (clk, rst, wr, wrR15, wrAddr, wrData, wrDataR15, rdAddrR1, rdDataR1, rdAddrR2, rdDataR2, rdAddrR15, rdDataR15);
 	input clk;
 	input rst;
 	input wr;
