@@ -1,43 +1,35 @@
-// Reference from http://courses.cs.washington.edu/courses/cse370/10sp/pdfs/lectures/regfile.txt 
-// This is a Verilog description for a 16 x 16-bit register file
+/* Reference from http://courses.cs.washington.edu/courses/cse370/10sp/pdfs/lectures/regfile.txt 
+   This is a Verilog description for a 16 x 16-bit register file */
 `timescale 1ns / 1ns
 
-module regFile (clk, rst, wr, wrR15, wrAddr, wrData, wrDataR15, rdAddrR1, rdDataR1, rdAddrR2, rdDataR2, rdAddrR15, rdDataR15);
-	input clk;
-	input rst;
-	input wr;
-	input wrR15;
-	input [2:0]   wrAddr;
-	input [15:0]  wrData;
-	input [15:0]  wrDataR15;
-	input [2:0]   rdAddrR1;
-	output [15:0] rdDataR1;
-	input [2:0]   rdAddrR2;
-	output [15:0] rdDataR2;
-	input [2:0]   rdAddrR15;
-	output [15:0] rdDataR15;
-
+module regFile(clk,rst,regR1,regR2,regDst,regDstData,regR15Data,wr,wrR15,rdR1,rdR2,rdR15);
+	parameter dataSize=16;
 	parameter regSize=4;
 	parameter regCnt=(1<<regSize);
-	parameter dataSize=16;
-
-	integer i; 
-	reg [15:0] regfile [0:15];
-
-	assign rdDataR1 = regfile[rdAddrR1];
-	assign rdDataR2 = regfile[rdAddrR2];
-	assign rdDataR15 = regfile[rdAddrR15];
-	
-	reg[dataSize-1:0]regData[regCnt-1:0];
 	integer n;
+
+	input clk,rst;
+	input [regSize-1:0] regR1;
+	input [regSize-1:0] regR2;
+	input [regSize-1:0] regDst;
 	
-	always @(posedge clk)
+	input wr,wrR15;
+	input [dataSize-1:0] regDstData;
+	input [dataSize-1:0] regR15Data;
+	
+	output reg[dataSize-1:0]rdR1;
+	output reg[dataSize-1:0]rdR2;
+	output reg[dataSize-1:0]rdR15;
+
+	reg[dataSize-1:0]regData[regCnt-1:0];
+	
+	always@(negedge rst or posedge clk)
 	begin
 		if(!rst)
 		begin
-			for(i=0; i<regCnt; i=i+1)
+			for(n=0;n<regCnt;n=n+1)
 			begin
-				case(i)
+				case(n)
 					1:regData[n]<=16'hFFFF;
 					2:regData[n]<=16'h0050;
 					3:regData[n]<=16'hF033;
@@ -57,31 +49,38 @@ module regFile (clk, rst, wr, wrR15, wrAddr, wrData, wrDataR15, rdAddrR1, rdData
 		end
 		else
 		begin
-			case({wr,wrR15})
-				2'b00:
+		case({wr,wrR15})
+			2'b00:
+			begin
+				/* Do Nothing */
+			end
+			2'b01:
+			begin
+				regData[{regSize{1'b0}}]<=wrR15;
+			end
+			2'b10:
+			begin
+			regData[regDst]<=regDstData;
+			end
+			2'b11:
+			begin
+				if(regDst=={regSize{1'b0}})
 				begin
+					regData[regDst]<=regDstData;
 				end
-				2'b01:
+				else
 				begin
-					regData[{regSize{1'b0}}]<=wrDataR15;
+					regData[regDst]<=regDstData;		
+					regData[{dataSize{1'b0}}]<=wrR15;
 				end
-				2'b10:
-				begin
-					regData[wrAddr]<=wrData;
-				end
-				2'b11:
-				begin
-					if(wrAddr=={regSize{1'b0}})
-					begin
-						regData[wrAddr]<=wrData;
-					end
-					else
-					begin
-						regData[wrAddr]<=wrData;		
-						regData[{dataSize{1'b0}}]<=wrDataR15;
-					end
-				end
-			endcase
+			end
+		endcase
 		end
+	end
+	always@(*)
+	begin
+		rdR1=regData[regR1];
+		rdR2=regData[regR2];
+		rdR15=regData[{regSize{1'b0}}];
 	end
 endmodule
