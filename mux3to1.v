@@ -1,4 +1,4 @@
-/* 3 to 1 multiplexer module (mux4to1.v) outputs the corresponding signal based on the selection signal received. 
+/* 3 to 1 multiplexer module (mux3to1.v) outputs the corresponding signal based on the selection signal received. 
 */
 module mux3to1(a, b, c, out, sel);
 	input a, b, c;
