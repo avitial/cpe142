@@ -2,7 +2,7 @@
    datapath includes the handling of read and write operations for the registers mentioned in the project design file. The module makes 
    use of some control signals to enable read and write operations and the set of processor registers found in the CPU. This module 
    also contains multiple ports for read and write operations and a set of registers used to phase data in between the memory and other 
-   sections.
+   sections of the datapath.
 */
 module regFile(clk,rst,regR1,regR2,regDst,regDstData,regR15Data,wr,wrR15,rdR1,rdR2,rdR15);
 	parameter regSize=4;
