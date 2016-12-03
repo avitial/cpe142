@@ -11,8 +11,8 @@ Now you can make changes to the file(s) and save the changes, after that you nee
 	
 	git commit nameofthefile.v
 	
-	(will prompt to enter the updates you made to file into a text file, save this text file (Ctrl+O, Enter) with the 
-	necessary comments of your update and exit (Ctrl+X, Enter))
+	(will prompt to enter the updates you made to file into a text file, save this text file (Ctrl+O, Enter) with 
+	descriptive comments of your updates and exit (Ctrl+X, Enter))
 
 After that you should be able to push your file(s) modifications to the master branch of the repository:
 	
