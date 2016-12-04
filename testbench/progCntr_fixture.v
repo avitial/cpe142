@@ -1,4 +1,4 @@
-// Top level stimulus module for regFile.v block
+// Top level stimulus module for progCntr.v block
 `include "progCntr.v"
 module progCntr_fixture;
     // Declare variables for stimulating input
