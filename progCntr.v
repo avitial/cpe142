@@ -3,28 +3,30 @@
    be executed next.
 */
 module progCntr(clk,rst,wr,dataIn,cnt);
-	input clk, rst, wr;
-	input [15:0] dataIn;
-	output [15:0] cnt;
+		// Input ports
+        input clk, rst, wr;
+        input [15:0] dataIn;
+        // Output ports
+		output [15:0] cnt;
+	
+        reg [15:0] cnt;
 
-	reg [15:0] cnt;
-
-	always@(posedge clk or negedge rst)
-	begin
-		if(~rst)
-		begin
-			cnt<=16'h0000;
-		end
-		else
-		begin
-			if(wr)
+        always@(posedge clk or negedge rst)
+        begin
+			if(~rst)
 			begin
-				cnt<=dataIn;
+				cnt<=16'h0000;
 			end
 			else
 			begin
-				cnt<=cnt;
+				if(wr)
+				begin
+					cnt<=dataIn;
+				end
+				else
+				begin
+					cnt<=cnt;
+				end
 			end
-		end
-	end
+        end
 endmodule
