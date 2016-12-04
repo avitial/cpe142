@@ -27,7 +27,7 @@ module alu(op1,op2,extended,aluDecr,ALUSrc,aluCtrl,aluRslt, aluRsltR15, ovExcep)
 
 	always@(*)
 	begin
-		casex({aluCtrl,aluDecr})
+		case({aluCtrl,aluDecr})
 			5'b00000:	// Signed Addition, op1 = op1 + op2
 			begin
 				aluRslt[31:16]={16{1'b0}};
