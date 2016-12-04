@@ -50,7 +50,7 @@ module regFile(clk,rst,regR1,regR2,regDst,regDstData,regR15Data,wr,wrR15,rdR1,rd
 		end
 		else
 		begin
-			case({wr15,wr})
+			case({wrR15,wr})
 				2'b00:
 				begin
 					// Do nothing
