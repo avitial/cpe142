@@ -23,7 +23,7 @@ module alu(op1,op2,extended,aluDecr,ALUSrc,aluCtrl,aluRslt, aluRsltR15, ovExcep)
 	assign aluOp1 = ALUSrc ? extended:op1;
 	assign aluOp2 =! ALUSrc && aluDecr[3] ? extended:op2;
 	assign ovExcep = ovFlow && ovFlowSE;
-	assign ovFlow = ((aluOp1[15]^~aluOp2[15])&&(aluOp1[15] ^aluRslt[15]));
+	assign ovFlow = ((aluOp1[15]^~aluOp2[15])&&(aluOp1[15]^aluRslt[15]));
 
 	always@(*)
 	begin
@@ -61,16 +61,8 @@ module alu(op1,op2,extended,aluDecr,ALUSrc,aluCtrl,aluRslt, aluRsltR15, ovExcep)
 			5'b00011: // OR Immediate, op1 = op1 | {8’b0, constant}
 			begin
 				aluRslt[31:16]={16{1'b0}};
-				aluRslt[15:0]=aluOp1&aluOp2;
+				aluRslt[15:0]=aluOp1|aluOp2;
 				ovFlowSE=1'b0;
-			end
-			5'b01000: // SWAP, op1 <= op2, op2 <= op1
-			begin
-				aluRslt[31:0]={16{1'b0}};
-				aluRslt[15:0]=aluOp1&aluOp2;
-				ovFlowSE=1'b0;
-				//a <= b;
-				//b <= a;
 			end
 			5'b1xxxx:	
 			begin
