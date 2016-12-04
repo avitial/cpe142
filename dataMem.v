@@ -1,3 +1,4 @@
+
 module dataMem(clk, rst, address, readData, writeData, MemRead, MemWrite);
   // Variables
   parameter addressSize = 16;
