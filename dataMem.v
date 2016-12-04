@@ -31,6 +31,6 @@ module dataMem(clk, rst, address, readData, writeData, MemRead, MemWrite);
         end
       end
 
-  assign readData = (MemRead)?
-         Location[address]:{dataSize{1'bz}};
+  assign readData = (MemRead)? Location[address]:{dataSize{1'bz}};
+
 endmodule
