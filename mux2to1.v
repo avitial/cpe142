@@ -5,11 +5,11 @@ module mux2to1(a, b, out, sel);
 	input a, b, sel;
 	output out;
 	reg out;
-  always @ (a or b or sel)
+  always @ (sel or a or b)
 	begin
 		case(sel)
-			0: sel = a;
-			1: sel = b;
+			0: out = a;
+			1: out = b;
 			`ifdef DEBUG
 				default: $display("Debug msg: there was an error triggered in the program.");
 			`endif
