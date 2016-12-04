@@ -3,14 +3,13 @@
    be executed next.
 */
 module progCntr(clk,rst,wr,dataIn,cnt);
-	parameter size = 16;
 	input clk, rst, wr;
-	input [size-1:0] dataIn;
-	output [size-1:0] cnt;
+	input [15:0] dataIn;
+	output [15:0] cnt;
 
-	reg [size-1:0] cnt;
+	reg [15:0] cnt;
 
-	always@(negedge rst or posedge clk)
+	always@(posedge clk or negedge rst)
 	begin
 		if(~rst)
 		begin
