@@ -5,12 +5,12 @@ module mux3to1(a, b, c, out, sel);
 	input [1:0] sel;
 	output out;
 	reg out;
-	always @ (a or b or c or sel)
+	always @ (sel or a or b or c)
 	begin
 		case(sel)
-			0: sel = a;
-			1: sel = b;
-			2: sel = c;
+			0: out = a;
+			1: out = b;
+			2: out = c;
 			`ifdef DEBUG
 				default: $display("Debug msg: there was an error triggered in the program.");
 			`endif
