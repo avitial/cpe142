@@ -1,6 +1,6 @@
-/* 3 to 1 multiplexer module (mux3to1.v) outputs the corresponding signal based on the selection signal received. 
+/* 3 to 1 multiplexer module (regDstMux.v) outputs the corresponding signal based on the selection signal received. 
 */
-module mux3to1(a, b, c, out, sel);
+module regDstMux(a, b, c, out, sel);
 	input [3:0] a;
 	input [3:0] b;
 	input [3:0] c;
