@@ -1,6 +1,6 @@
-/* The data memory module (dataMem.v) is used for load word and store word operations (Type-B)The data mamory is used for load and store word opprations. It acts as the main memory in this design.
-   It has the capacility of writing data to memory to the address provided, 
-   and also reading data from memoryagain from the address provided.
+/* The data memory module (dataMem.v) is used for load word and store word operations (Type-B). This module behaves as main memory in the 
+   cpu design, capable of writing data to the memory block in the given location (address) and also capable of reading data from memory
+   in the given location (address).
 */
 module dataMem(clk, rst, addr, rdData, wrData, memRead, memWrite);
 	// Variables
