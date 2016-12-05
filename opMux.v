@@ -1,5 +1,5 @@
-/* 3 to 1 multiplexer module (opMux.v) opputs the corresponding operator for the ALU inputs based on 
-   the ALUSrcection signal received by the forwarding unit. 
+/* 3 to 1 multiplexer module (opMux.v) outputs the corresponding operator for the ALU inputs (operators) based on 
+   the ALU source signal received by the forwarding unit. 
 */
 module opMux(a, b, c, op, ALUSrc);
 	// Input Ports
