@@ -1,6 +1,6 @@
-// Top level stimulus module for mux4to1.v block
-`include "mux4to1.v"
-module mux4to1_fixture;
+// Top level stimulus module for regDstDataMux.v block
+`include "regDstDataMux.v"
+module regDstDataMux_fixture;
     // Declare variables for stimulating input
 	reg clk;
 	reg [15:0] a;
@@ -18,7 +18,7 @@ module mux4to1_fixture;
 	$monitor($time,"| %b | %b |", out[15:0], sel[1:0]);
 
 	// Instantiate the design block regFile
-	mux4to1 mux1(a, b, c, d, out, sel);
+	regDstDataMux mux1(a, b, c, d, out, sel);
 
 	// Drive the input signals
 	initial
