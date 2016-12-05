@@ -1,6 +1,6 @@
-/* 4 to 1 multiplexer module (mux4to1.v) outputs the corresponding signal based on the selection signal received. 
+/* 4 to 1 multiplexer module (regDstDataMux.v) outputs the corresponding signal based on the selection signal received. 
 */
-module mux4to1(a, b, c, d, out, sel);
+module regDstDataMux(a, b, c, d, out, sel);
 	input [15:0] a;
 	input [15:0] b;
 	input [15:0] c;
