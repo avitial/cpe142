@@ -1,6 +1,6 @@
 // Top level stimulus module for mux3to1.v block
-`include "mux3to1.v"
-module mux3to1_fixture;
+`include "regDstMux.v"
+module regDstMux_fixture;
     // Declare variables for stimulating input
 	reg clk;
 	reg [3:0] a;
@@ -17,7 +17,7 @@ module mux3to1_fixture;
 	$monitor($time,"| %b | %b |", out[3:0], sel[1:0]);
 
 	// Instantiate the design block regFile
-	mux3to1 mux1(a, b, c, out, sel);
+	regDstMux mux1(a, b, c, out, sel);
 
 	// Drive the input signals
 	initial
