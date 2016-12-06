@@ -30,13 +30,37 @@ module cpu(clk, rst);
  	wire w7, w8, w9, w14, w15, w16, w17, w41, w49, w50, w52, w55, w56,
 	     w58, w70, w71, w72, w73, w74, w75, w86;
 
+	alu alu1 (op1,op2,extended,aluDecr,ALUSrc,aluCtrl,aluRslt, aluRsltR15, ovExcep);
 
+	comptr comptr1 (in1,in2,brGtr,brLte,brEq);
+	
+	ctrlUnit controlUnit1 (instType, memToReg, wr, wrR15, memRead, memWrite, 
+				branch, ALUSrc, ALUOp, setExc, opCode, funcCode);
+	
+	dataMem dataMemory1 (clk, rst, addr, rdData, wrData, memRead, memWrite);
 
+	fwdUnit fwdUnit1 (ALUSrc1, ALUSrc2, memRegWrite, wbRegWrite, MEMRegRd, WBRegRd, 
+			EXregR1, EXregR2);
+	
+	hazDetnUnit hazDetnUnit1 (regR1, regR2, EXregR2, rdR1rdR15comp, IDEXMemRead, 
+				wrPC, IFIDWrite, halt);
 
-85, w86 branch
+	instMem instMem1 (rdAddr,inst);
 
+	mux2to1 mux2 (a, b, out, sel);
 
+	opMux mux3 (a, b, c, op, ALUSrc);
 
+	progCntr progCntr1 (clk,rst,wrPC,dataIn,cnt);
 
+	regDstDataMux(a, b, c, d, out, sel);
+
+	regDstMux(a, b, c, out, sel);
+
+	regFile(clk,rst,regR1,regR2,regDst,regDstData,regR15Data,wr,wrR15,rdR1,rdR2,rdR15);
+
+	signExtend(sExtend, instType, sExtended);	
+
+	
 endmodule
 
