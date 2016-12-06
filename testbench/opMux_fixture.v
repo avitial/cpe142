@@ -13,7 +13,7 @@ module opMux_fixture;
 	$vcdpluson;
 	
 	initial
-	$monitor($time,”| %b | %b |", op[3:0], ALUSrc[1:0]);
+		$monitor($time,"| %b | %b |", op[3:0], ALUSrc[1:0]);
 
 	opMux mux1(a, b, c, op, ALUSrc);
 	initial
