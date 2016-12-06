@@ -30,7 +30,9 @@ module cpu(clk, rst);
  	wire w7, w8, w9, w14, w15, w16, w17, w41, w49, w50, w52, w55, w56,
 	     w58, w70, w71, w72, w73, w74, w75, w86;
 
-	alu alu1 (op1,op2,extended,aluDecr,ALUSrc,aluCtrl,aluRslt, aluRsltR15, ovExcep);
+	
+
+	alu alu1 (w85,w84,extended,aluDecr,ALUSrc,aluCtrl,aluRslt, aluRsltR15, ovExcep);
 
 	comptr comptr1 (in1,in2,brGtr,brLte,brEq);
 	
