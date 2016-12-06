@@ -2,9 +2,9 @@
    fetching, the program counter is incremented and carries the most recent memory address for the following instruction that will
    be executed next.
 */
-module progCntr(clk,rst,wr,dataIn,cnt);
+module progCntr(clk,rst,wrPC,dataIn,cnt);
 		// Input ports
-        input clk, rst, wr;
+        input clk, rst, wrPC;
         input [15:0] dataIn;
         // Output ports
 		output [15:0] cnt;
@@ -19,7 +19,7 @@ module progCntr(clk,rst,wr,dataIn,cnt);
 			end
 			else
 			begin
-				if(wr)
+				if(wrPC)
 				begin
 					cnt<=dataIn;
 				end
